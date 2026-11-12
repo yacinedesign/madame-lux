@@ -1,0 +1,728 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Madame Lux · Dómina en Zaragoza</title>
+<meta name="description" content="Madame Lux, dómina soft en Zaragoza. Elegancia, disciplina y un trato cercano. Sesiones BDSM presenciales y online con discreción absoluta. Solo para mayores de 18 años.">
+<meta name="robots" content="noindex, nofollow"><!-- preview: quitar al publicar -->
+<meta name="theme-color" content="#0A0607">
+<meta name="rating" content="adult">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Madame Lux · Dómina en Zaragoza">
+<meta property="og:description" content="Soy la luz que te ciega y la sombra a la que siempre vuelves. Solo para mayores de 18.">
+<meta property="og:url" content="https://yacinedesign.github.io/madame-lux/">
+<meta property="og:image" content="https://yacinedesign.github.io/madame-lux/assets/img/og.jpg">
+
+<link rel="icon" type="image/png" href="assets/img/favicon.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+<script>
+  /* Antes de pintar: si ya cruzó el umbral 18+ (sin destello) */
+  (function () {
+    var d = document.documentElement, ok = false;
+    try { ok = localStorage.getItem('ml-umbral') === '1'; } catch (e) {}
+    d.classList.add(ok ? 'pasa' : 'locked');
+    d.classList.add('js');
+  })();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/img/trono.webp">
+<link rel="stylesheet" href="assets/css/style.css">
+<noscript><style>.gate{display:none!important}.reveal,.rise,.ch{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<!-- ─────────────────────────── UMBRAL 18+ ─────────────────────────── -->
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-t" aria-describedby="gate-p">
+  <div class="gate__half gate__half--l" aria-hidden="true"></div>
+  <div class="gate__half gate__half--r" aria-hidden="true"></div>
+  <div class="gate__in">
+    <div class="medal medal--gate" data-tilt>
+      <img src="assets/img/logo.webp" alt="Monograma ML de Madame Lux" width="640" height="691">
+    </div>
+    <p class="eyebrow eyebrow--c">Solo para adultos</p>
+    <h2 class="gate__t" id="gate-t">Estás a punto de <em>cruzar el umbral</em></h2>
+    <p class="gate__p" id="gate-p">Lo que hay al otro lado es para mayores de 18&nbsp;años que saben lo que buscan. Una vez dentro, aquí mando yo.</p>
+    <div class="gate__btns">
+      <button class="btn btn--red" id="gate-ok" type="button">Soy mayor de edad · Entrar</button>
+      <a class="btn btn--ghost" href="https://www.google.com" rel="nofollow noopener">Salir</a>
+    </div>
+    <p class="gate__fine">Al entrar confirmas que tienes 18&nbsp;años o más y que el contenido BDSM entre adultos no te resulta ofensivo.</p>
+  </div>
+</div>
+
+<div class="progress" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+
+<!-- ──────────────────────────── CABECERA ──────────────────────────── -->
+<header class="nav" id="nav">
+  <a class="nav__brand" href="#inicio" aria-label="Madame Lux, inicio">
+    <img src="assets/img/logo.webp" alt="" width="40" height="43">
+    <span>Madame <em>Lux</em></span>
+  </a>
+  <nav class="nav__links" id="menu" aria-label="Principal">
+    <a href="#quien">Quién soy</a>
+    <a href="#practicas">Prácticas</a>
+    <a href="#huellas">Huellas</a>
+    <a href="#tributos">Tributos</a>
+    <a href="#protocolo">Protocolo</a>
+    <a href="#contacto">Contacto</a>
+    <a class="btn btn--red btn--sm" href="#admision">Solicitar sesión</a>
+  </nav>
+  <button class="nav__burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
+    <span></span><span></span>
+  </button>
+</header>
+
+
+<main id="contenido">
+
+<!-- ────────────────────────────── HERO ────────────────────────────── -->
+<section class="hero" id="inicio" aria-label="Madame Lux">
+  <div class="hero__media">
+    <img src="assets/img/trono.webp" width="768" height="1364" fetchpriority="high"
+         alt="Madame Lux con máscara roja, corsé de brocado y medias de rejilla, sentada en un trono negro tallado con una fusta en la mano">
+  </div>
+  <div class="hero__veil" aria-hidden="true"></div>
+  <canvas class="embers" id="embers" aria-hidden="true"></canvas>
+
+  <div class="hero__in wrap">
+    <p class="eyebrow rise" style="--d:.15s">Dómina soft · Zaragoza</p>
+    <h1 class="hero__t">
+      <span class="hero__l1 split">Madame</span>
+      <span class="hero__l2"><span class="split gold">Lux</span></span>
+    </h1>
+    <p class="hero__lead rise" style="--d:1.1s">Soy la luz que te ciega<br> y la sombra a la que siempre vuelves.</p>
+    <p class="hero__sub rise" style="--d:1.3s">Elegancia, disciplina y un trato cercano. La guía suave pero firme que te ayuda a soltar el control… y a entregarte por completo.</p>
+    <div class="hero__btns rise" style="--d:1.5s">
+      <a class="btn btn--red" href="#admision">Solicitar admisión</a>
+      <a class="btn btn--ghost" href="https://wa.me/34614006638?text=Hola%20Madame%20Lux%2C%20vengo%20de%20tu%20web%20y%20me%20gustar%C3%ADa%20saber%20m%C3%A1s." target="_blank" rel="noopener">
+        <svg class="ic-wa" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.02c-.24.68-1.42 1.3-1.96 1.35-.5.05-1.13.07-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.79-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3s.75-2.13 1.02-2.42c.27-.29.58-.36.78-.36h.56c.18 0 .42-.07.65.5.24.58.82 2 .89 2.15.07.14.12.31.02.5-.1.19-.14.31-.29.48-.14.17-.3.38-.43.51-.14.14-.29.3-.13.59.17.29.74 1.22 1.58 1.97 1.09.97 2 1.27 2.29 1.42.29.14.46.12.63-.07.17-.19.72-.84.92-1.13.19-.29.38-.24.65-.14.27.1 1.7.8 1.99.95.29.14.48.22.55.34.07.12.07.7-.17 1.38z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+    <ul class="hero__facts rise" style="--d:1.7s">
+      <li>Presencial y online</li>
+      <li>Lunes a sábado</li>
+      <li>Castellano · English</li>
+    </ul>
+  </div>
+
+  <a class="hero__down rise" style="--d:2.2s" href="#quien" aria-label="Bajar a Quién soy"><span></span></a>
+</section>
+
+
+<!-- ──────────────────────────── MARQUESINA ─────────────────────────── -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>Obediencia</span><i class="star"></i><span>Disciplina</span><i class="star"></i><span>Entrega</span><i class="star"></i>
+    <span>Confianza</span><i class="star"></i><span>Devoción</span><i class="star"></i><span>Respeto</span><i class="star"></i>
+    <span>Obediencia</span><i class="star"></i><span>Disciplina</span><i class="star"></i><span>Entrega</span><i class="star"></i>
+    <span>Confianza</span><i class="star"></i><span>Devoción</span><i class="star"></i><span>Respeto</span><i class="star"></i>
+  </div>
+</div>
+
+
+<!-- ─────────────────────────── QUIÉN SOY ──────────────────────────── -->
+<section class="quien sec" id="quien">
+  <div class="wrap quien__grid">
+    <figure class="arch reveal">
+      <div class="arch__img">
+        <img src="assets/img/antifaz.webp" width="1063" height="1600" loading="lazy"
+             alt="Madame Lux tumbada boca arriba con lencería roja de encaje, cadenas doradas y un antifaz veneciano rojo y oro">
+      </div>
+      <figcaption><span class="star"></span> Detrás del antifaz, siempre yo</figcaption>
+    </figure>
+
+    <div class="quien__txt">
+      <p class="eyebrow reveal">I · Quién soy</p>
+      <h2 class="h2 reveal" style="--i:1">No vengo a quebrar tu voluntad. <em>Vengo a guiarla.</em></h2>
+      <p class="reveal" style="--i:2">Me llaman Madame Lux. <em>Lux</em>, luz. Entiendo la dominación desde el respeto, la conexión profunda y la sensualidad: no busco romperte, sino ser la guía suave pero firme que te permita desconectar del control de cada día y entregarte con total confianza.</p>
+      <p class="reveal" style="--i:3">Mi estilo une la elegancia y la disciplina con un trato afectuoso y comprensivo. Disfruto de la entrega sincera y marco los límites con precisión, para que explores tu lado más sumiso en un entorno seguro, discreto y libre de juicios.</p>
+      <blockquote class="quote reveal" style="--i:4">“Sano, seguro y consensuado. Todo lo demás lo decido yo.”</blockquote>
+      <ul class="pillars reveal" style="--i:5">
+        <li><b>Discreción</b><span>absoluta</span></li>
+        <li><b>Sin juicios</b><span>en ningún momento</span></li>
+        <li><b>Aftercare</b><span>en cada sesión</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="braid" aria-hidden="true"><i class="star"></i></div>
+
+
+<!-- ─────────────────────────── PRÁCTICAS ──────────────────────────── -->
+<section class="practicas sec" id="practicas">
+  <div class="wrap">
+    <header class="sec__head">
+      <div>
+        <p class="eyebrow reveal">II · Prácticas</p>
+        <h2 class="h2 reveal" style="--i:1">Elige cómo <em>rendirte</em>.</h2>
+      </div>
+      <p class="sec__intro reveal" style="--i:2">Cada sesión se diseña para ti después de leer tu formulario. Estas son las puertas que puedo abrir; tú solo decides ante cuál suplicas.</p>
+    </header>
+
+    <div class="cards">
+      <article class="card reveal" style="--i:0">
+        <span class="card__n">I</span>
+        <svg class="card__ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M39 7.5 30.5 16" class="thick"/><path d="M41.5 5l-1.5 1.5"/><path d="M30 16.5C23 20 14 23.5 6.5 25.5M30 16.5C24 22 17 28 10 32.5M30 16.5C25 23 20 30 14.5 37M30 16.5c-3 7.5-6 15-9.5 22.5M30 16.5c-1 8-2 16.5-3.5 25"/></svg>
+        <h3>Disciplina</h3>
+        <p>La mano, la fusta, el látigo. Aprenderás que cada golpe es una lección, y cada lección, un privilegio.</p>
+        <ul class="chips"><li>Spanking</li><li>Flagelación</li><li>Bofetadas</li><li>Ballbusting</li><li>CBT / Control genital</li></ul>
+      </article>
+
+      <article class="card reveal" style="--i:1">
+        <span class="card__n">II</span>
+        <svg class="card__ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 24c-3.5-5-7-8-11-8a8 8 0 0 0 0 16c4 0 7.5-3 11-8s7-8 11-8a8 8 0 0 1 0 16c-4 0-7.5-3-11-8z"/><path d="M13 32c-3 3-4 7-3 10M35 32c3 3 4 7 3 10" class="soft"/></svg>
+        <h3>Ataduras</h3>
+        <p>Cuerda roja sobre piel desnuda. Quieto, ciego, entregado: tu única libertad será obedecer.</p>
+        <ul class="chips"><li>Bondage</li><li>Inmovilización</li><li>Momificación</li><li>Privación sensorial</li></ul>
+      </article>
+
+      <article class="card reveal" style="--i:2">
+        <span class="card__n">III</span>
+        <svg class="card__ic" viewBox="0 0 48 48" aria-hidden="true"><rect x="17" y="22" width="14" height="19" rx="1.5"/><path d="M24 22v-3.5"/><path d="M24 5.5c3 4 5 6.5 5 9.5a5 5 0 0 1-10 0c0-3 2-5.5 5-9.5z"/><path d="M20.5 22v6a1.6 1.6 0 0 0 3.2 0v-2.5" class="soft"/><path d="M12 44h24"/></svg>
+        <h3>Sensaciones</h3>
+        <p>Cera que arde despacio, tacones que pesan, gestos que marcan. Sentirás exactamente lo que yo decida.</p>
+        <ul class="chips"><li>Cera</li><li>Trampling</li><li>Spitting</li><li>Lluvia dorada</li><li>Control de la respiración</li></ul>
+      </article>
+
+      <article class="card reveal" style="--i:3">
+        <span class="card__n">IV</span>
+        <svg class="card__ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M5 38h12c5 0 9-3 13-8l5-6.5 6.5 1.5v5l-3 1.5"/><path d="M38.5 31.5 37.5 44"/><path d="M5 38c0-3 2-5.5 5.5-5.5H15c4 0 7-2 9.5-5" class="soft"/></svg>
+        <h3>Fetiche</h3>
+        <p>Mis pies, mis medias, mi látex. Mirarlos es un premio; adorarlos, un honor que tendrás que ganarte.</p>
+        <ul class="chips"><li>Foot fetish</li><li>Látex</li><li>Lencería</li><li>Animalización (Pet Play)</li></ul>
+      </article>
+
+      <article class="card reveal" style="--i:4">
+        <span class="card__n">V</span>
+        <svg class="card__ic" viewBox="0 0 48 48" aria-hidden="true"><circle cx="15" cy="24" r="8"/><circle cx="15" cy="24" r="2.6" class="soft"/><path d="M23 24h19M36 24v6M41 24v4.5"/></svg>
+        <h3>Mente</h3>
+        <p>El juego más profundo no deja marcas en la piel. Controlo lo que piensas, lo que deseas y cuándo puedes desearlo.</p>
+        <ul class="chips"><li>Dominación psicológica</li><li>Humillación</li><li>Feminización</li><li>Juegos de rol</li><li>Castidad</li><li>Control de orgasmo / Edging</li></ul>
+      </article>
+
+      <article class="card reveal" style="--i:5">
+        <span class="card__n">VI</span>
+        <svg class="card__ic" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="6"/><path d="M8 9l11.5 11M40 9 28.5 20M8 39l11.5-11M40 39 28.5 28"/><path d="M5 12l6-6M43 12l-6-6M5 36l6 6M43 36l-6 6" class="soft"/></svg>
+        <h3>Inversión</h3>
+        <p>Arnés ceñido y ninguna prisa. Aquí los papeles cambian de dueña: soy yo quien toma, y tú quien aprende a recibir.</p>
+        <ul class="chips"><li>Pegging</li><li>Strap-on</li><li>Sodomización</li><li>Dilatación anal</li><li>Vibradores</li></ul>
+      </article>
+
+      <article class="card reveal" style="--i:6">
+        <span class="card__n">VII</span>
+        <svg class="card__ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 36 6 16l10 8 8-12 8 12 10-8-2 20z"/><path d="M10 41h28"/><circle cx="24" cy="29" r="2.2" class="soft"/></svg>
+        <h3>Tributo y online</h3>
+        <p>Tu cartera también se arrodilla. Y si estás lejos, te domino a distancia: webcam, vídeos y contenido hecho solo para ti.</p>
+        <ul class="chips"><li>Findom</li><li>Finfet</li><li>MoneySlave</li><li>Webcam</li><li>Vídeos personalizados</li><li>Contenido personalizado</li><li>Venta de artículos</li></ul>
+      </article>
+
+      <article class="card card--no reveal" style="--i:7">
+        <span class="card__n">✕</span>
+        <svg class="card__ic" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="16"/><path d="M12.7 35.3 35.3 12.7"/></svg>
+        <h3>Jamás</h3>
+        <p>Mis límites no se negocian. Los tuyos se respetan siempre, con palabra de seguridad en cada sesión.</p>
+        <ul class="chips"><li>Scat</li><li>Agujas</li></ul>
+        <p class="card__fine">Mis sesiones son BDSM. No ofrezco servicios sexuales.</p>
+      </article>
+    </div>
+
+    <p class="practicas__note reveal"><span class="star"></span> Cada práctica se habla antes de empezar. Nada ocurre sin tu consentimiento; todo ocurre bajo mis reglas.</p>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────── INTERLUDIO ─────────────────────────── -->
+<section class="inter" aria-label="Palabras de Madame Lux">
+  <div class="inter__in wrap">
+    <div class="medal medal--inter reveal" data-tilt>
+      <img src="assets/img/logo.webp" alt="" width="640" height="691" loading="lazy">
+    </div>
+    <p class="inter__q reveal" style="--i:1">Mi mano es suave.<br>Mi palabra, <em>ley.</em></p>
+    <p class="inter__sig reveal" style="--i:2">— Madame Lux</p>
+  </div>
+</section>
+
+
+<!-- ──────────────────────────── HUELLAS ───────────────────────────── -->
+<section class="huellas sec" id="huellas">
+  <div class="wrap">
+    <header class="sec__head">
+      <div>
+        <p class="eyebrow reveal">III · Huellas</p>
+        <h2 class="h2 reveal" style="--i:1">Lo que dejo <em>en la piel</em>.</h2>
+      </div>
+      <p class="sec__intro reveal" style="--i:2">Fragmentos reales de mis sesiones. Cera, cuerda, tacón y guante: cada marca recuerda quién manda. Pulsa para verlas de cerca.</p>
+    </header>
+
+    <div class="gal">
+      <div class="gal__col">
+        <button class="shot reveal" type="button" style="--r:1.778" data-cap="Corazón de cera">
+          <img src="assets/img/cera.webp" width="844" height="1500" loading="lazy" alt="Torso de un sumiso atado con cuerda roja, con gotas de cera negra que dibujan un corazón">
+          <span class="shot__cap"><small>01</small>Corazón de cera</span>
+        </button>
+        <button class="shot reveal" type="button" style="--r:.5625;--i:1" data-cap="Bajo mi tacón">
+          <img src="assets/img/tacon.webp" width="1600" height="900" loading="lazy" alt="Un zapato de tacón negro apoyado sobre la espalda de un sumiso tendido en el suelo, junto a cuerdas rojas y un flogger">
+          <span class="shot__cap"><small>02</small>Bajo mi tacón</span>
+        </button>
+      </div>
+      <div class="gal__col">
+        <button class="shot reveal" type="button" style="--r:1.333;--i:1" data-cap="Firmado: ML">
+          <img src="assets/img/firma.webp" width="960" height="1280" loading="lazy" alt="Espalda marcada de un sumiso encapuchado, con el tacón de Madame Lux sobre ella y un llavero con el monograma ML">
+          <span class="shot__cap"><small>03</small>Firmado: ML</span>
+        </button>
+        <button class="shot reveal" type="button" style="--r:.676;--i:2" data-cap="Lección de obediencia">
+          <img src="assets/img/disciplina.webp" width="1400" height="947" loading="lazy" alt="Madame Lux con corsé de cuero y fusta roja ante un sumiso arrodillado con capucha de cachorro">
+          <span class="shot__cap"><small>04</small>Lección de obediencia</span>
+        </button>
+      </div>
+      <div class="gal__col">
+        <button class="shot reveal" type="button" style="--r:1.778;--i:2" data-cap="El guante rojo">
+          <img src="assets/img/guante.webp" width="844" height="1500" loading="lazy" alt="Mano con guante rojo sobre el pecho de un sumiso con collar de pinchos">
+          <span class="shot__cap"><small>05</small>El guante rojo</span>
+        </button>
+        <button class="shot reveal" type="button" style="--r:1.778;--i:3" data-cap="Lo que queda después">
+          <img src="assets/img/guante-2.webp" width="844" height="1500" loading="lazy" alt="Mano con guante rojo junto a las marcas que una sesión dejó en la piel">
+          <span class="shot__cap"><small>06</small>Lo que queda después</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="braid" aria-hidden="true"><i class="star"></i></div>
+
+
+<!-- ─────────────────────────── TRIBUTOS ─────────────────────────────
+     Los importes están en «Consultar» hasta que ella dé sus precios:
+     basta con cambiar el texto de cada <span class="carta__p">. -->
+<section class="tributos sec" id="tributos">
+  <div class="wrap">
+    <header class="sec__head">
+      <div>
+        <p class="eyebrow reveal">IV · Tributos</p>
+        <h2 class="h2 reveal" style="--i:1">Tu entrega también <em>tiene su precio</em>.</h2>
+      </div>
+      <p class="sec__intro reveal" style="--i:2">El tributo es tu primera muestra de respeto. Lo acordamos antes de la sesión, a la medida de lo que hayamos pactado después de leer tu formulario.</p>
+    </header>
+
+    <div class="trib__grid">
+      <div class="carta reveal">
+        <i class="frame__c frame__c--tl star"></i><i class="frame__c frame__c--tr star"></i>
+        <i class="frame__c frame__c--bl star"></i><i class="frame__c frame__c--br star"></i>
+
+        <div class="carta__g">
+          <h3 class="carta__h"><i class="star"></i>Presencial · Zaragoza</h3>
+          <ul>
+            <li><span class="carta__n">Sesión de una hora<small>Iniciación o sesión clásica</small></span><span class="carta__dots"></span><span class="carta__p">Consultar</span></li>
+            <li><span class="carta__n">Sesión de hora y media<small>Para ir más despacio… o más lejos</small></span><span class="carta__dots"></span><span class="carta__p">Consultar</span></li>
+            <li><span class="carta__n">Sesión de dos horas<small>Entrega completa, sin prisas</small></span><span class="carta__dots"></span><span class="carta__p">Consultar</span></li>
+            <li><span class="carta__n">Sesión a medida<small>Más tiempo, escenas y roles preparados para ti</small></span><span class="carta__dots"></span><span class="carta__p">Consultar</span></li>
+          </ul>
+        </div>
+
+        <div class="carta__g">
+          <h3 class="carta__h"><i class="star"></i>Online</h3>
+          <ul>
+            <li><span class="carta__n">Sesión por webcam<small>En directo y bajo mis órdenes, estés donde estés</small></span><span class="carta__dots"></span><span class="carta__p">Consultar</span></li>
+            <li><span class="carta__n">Vídeo personalizado<small>Grabado solo para ti</small></span><span class="carta__dots"></span><span class="carta__p">Consultar</span></li>
+            <li><span class="carta__n">Contenido personalizado<small>Fotos, audios y tareas a medida</small></span><span class="carta__dots"></span><span class="carta__p">Consultar</span></li>
+          </ul>
+        </div>
+
+        <div class="carta__g">
+          <h3 class="carta__h"><i class="star"></i>Dominación financiera</h3>
+          <ul>
+            <li><span class="carta__n">Findom · MoneySlave · Finfet<small>Tú das; yo decido si es suficiente</small></span><span class="carta__dots"></span><span class="carta__p">Consultar</span></li>
+            <li><span class="carta__n">Venta de artículos<small>Pregúntame qué tengo disponible</small></span><span class="carta__dots"></span><span class="carta__p">Consultar</span></li>
+          </ul>
+        </div>
+
+        <p class="carta__fine">Los importes se confirman por WhatsApp o Telegram una vez enviado el formulario.</p>
+      </div>
+
+      <aside class="ofrenda reveal" style="--i:2" aria-labelledby="ofrenda-t">
+        <h3 id="ofrenda-t">Cómo se entrega</h3>
+        <ol>
+          <li><span>I</span><p><b>Primero, el formulario.</b> Así sé qué buscas y puedo proponerte el tributo justo.</p></li>
+          <li><span>II</span><p><b>Lo pactamos por mensaje</b>: duración, prácticas y el tributo que corresponde.</p></li>
+          <li><span>III</span><p><b>En presencial, al llegar</b>: en un sobre, sobre la mesa y sin que tenga que pedirlo.</p></li>
+          <li><span>IV</span><p><b>Online y vídeos</b>, siempre por adelantado.</p></li>
+        </ol>
+        <p class="ofrenda__q">“Un buen sumiso nunca hace esperar a su Dómina. Tampoco su tributo.”</p>
+        <a class="btn btn--red" href="https://wa.me/34614006638?text=Hola%20Madame%20Lux%2C%20vengo%20de%20tu%20web%20y%20me%20gustar%C3%ADa%20conocer%20tus%20tributos." target="_blank" rel="noopener">
+          <svg class="ic-wa" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.02c-.24.68-1.42 1.3-1.96 1.35-.5.05-1.13.07-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.79-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3s.75-2.13 1.02-2.42c.27-.29.58-.36.78-.36h.56c.18 0 .42-.07.65.5.24.58.82 2 .89 2.15.07.14.12.31.02.5-.1.19-.14.31-.29.48-.14.17-.3.38-.43.51-.14.14-.29.3-.13.59.17.29.74 1.22 1.58 1.97 1.09.97 2 1.27 2.29 1.42.29.14.46.12.63-.07.17-.19.72-.84.92-1.13.19-.29.38-.24.65-.14.27.1 1.7.8 1.99.95.29.14.48.22.55.34.07.12.07.7-.17 1.38z"/></svg>
+          Consultar tributos
+        </a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────── PROTOCOLO ──────────────────────────── -->
+<section class="protocolo sec" id="protocolo">
+  <div class="wrap">
+    <header class="sec__head">
+      <div>
+        <p class="eyebrow reveal">V · Protocolo</p>
+        <h2 class="h2 reveal" style="--i:1">Antes de arrodillarte, <em>preséntate</em>.</h2>
+      </div>
+      <p class="sec__intro reveal" style="--i:2">A mí no se llega por casualidad. Se llega siguiendo el camino que yo marco, paso a paso.</p>
+    </header>
+
+    <div class="proto__grid">
+      <ol class="steps">
+        <li class="reveal">
+          <span class="step__n">I</span>
+          <h3>Formulario de admisión</h3>
+          <p>Me cuentas quién eres, qué deseas y dónde están tus límites. Con sinceridad: es tu primera prueba de obediencia.</p>
+        </li>
+        <li class="reveal" style="--i:1">
+          <span class="step__n">II</span>
+          <h3>Valoración</h3>
+          <p>Leo cada respuesta personalmente y valoro si existe compatibilidad entre lo que buscas y lo que yo ofrezco.</p>
+        </li>
+        <li class="reveal" style="--i:2">
+          <span class="step__n">III</span>
+          <h3>Primer contacto</h3>
+          <p>Si te acepto, hablamos por WhatsApp o Telegram: fecha, duración, tributo y tu palabra de seguridad. Nada queda al azar.</p>
+        </li>
+        <li class="reveal" style="--i:3">
+          <span class="step__n">IV</span>
+          <h3>La sesión</h3>
+          <p>Llegas puntual, aseado y con la mente abierta. A partir de ahí, ya no decides tú. Y al terminar, aftercare: te devuelvo al mundo entero… o casi.</p>
+        </li>
+      </ol>
+
+      <aside class="rules reveal" style="--i:2" aria-labelledby="rules-t">
+        <figure class="rules__img">
+          <img src="assets/img/altar.webp" width="1000" height="1156" loading="lazy"
+               alt="Madame Lux con vestido de vinilo negro y medias de rejilla, sentada junto a sus instrumentos dispuestos sobre la camilla">
+        </figure>
+        <h3 id="rules-t">Normas de la casa</h3>
+        <ul>
+          <li><i class="star"></i><span><b>Respeto</b> desde el primer mensaje.</span></li>
+          <li><i class="star"></i><span><b>Discreción</b> mutua: lo que pasa aquí, aquí se queda.</span></li>
+          <li><i class="star"></i><span><b>Palabra de seguridad</b> en cada sesión, sin excepciones.</span></li>
+          <li><i class="star"></i><span><b>Higiene</b> impecable y <b>puntualidad</b>.</span></li>
+          <li><i class="star"></i><span><b>Nada de fotos</b> ni grabaciones sin mi permiso.</span></li>
+        </ul>
+        <p class="rules__fine">Mis sesiones son BDSM. No tienen nada que ver con ningún servicio sexual.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────── ADMISIÓN ─────────────────────────────
+     Formulario propio con las mismas preguntas que su Google Form.
+     Se envía por AJAX a FormSubmit, que lo reenvía a su correo.
+     El primer envío hace que FormSubmit le mande un email de activación:
+     hasta que ella no lo confirme, no llega nada (ver README). -->
+<section class="admision sec" id="admision">
+  <div class="wrap">
+    <header class="sec__head sec__head--c">
+      <p class="eyebrow eyebrow--c reveal">VI · Admisión</p>
+      <h2 class="h2 reveal" style="--i:1">Tu primera prueba de <em>obediencia</em>.</h2>
+      <p class="sec__intro reveal" style="--i:2">Responde con calma y con verdad. Tus respuestas me llegan solo a mí y las trato con absoluta discreción. Si mientes aquí, lo sabré a la primera mirada.</p>
+    </header>
+
+    <div class="frame reveal" id="adm-frame">
+      <i class="frame__c frame__c--tl star"></i><i class="frame__c frame__c--tr star"></i>
+      <i class="frame__c frame__c--bl star"></i><i class="frame__c frame__c--br star"></i>
+
+      <form class="adm" id="adm" action="https://formsubmit.co/Mdmlux@outlook.com" method="POST" accept-charset="UTF-8">
+        <input type="hidden" name="_subject" value="Nueva solicitud de admisión · Madame Lux">
+        <input type="hidden" name="_template" value="table">
+        <div class="adm__hp" aria-hidden="true"><label>No rellenar <input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
+
+        <div class="adm__top">
+          <p class="adm__kicker">Formulario de admisión</p>
+          <ol class="adm__prog" aria-hidden="true">
+            <li class="is-on">Preséntate</li><li>Experiencia</li><li>Prácticas</li><li>Deseos y límites</li><li>Tu entrega</li>
+          </ol>
+          <div class="adm__bar" aria-hidden="true"><span></span></div>
+        </div>
+
+        <!-- I · Preséntate -->
+        <fieldset class="step is-on" data-step="1">
+          <legend class="step__t"><span>I</span>Preséntate</legend>
+
+          <div class="field">
+            <label for="f-nombre">¿Cómo prefieres que te llame? <b>*</b></label>
+            <input id="f-nombre" name="Nombre" type="text" required autocomplete="nickname" maxlength="80">
+          </div>
+          <div class="field">
+            <label for="f-contacto">¿Por dónde puedo responderte? <b>*</b></label>
+            <p class="help">WhatsApp, Telegram o email. Solo lo usaré para contestarte.</p>
+            <input id="f-contacto" name="Contacto" type="text" required maxlength="120" placeholder="+34…, @usuario o tu@email.com">
+          </div>
+          <div class="field field--half">
+            <label for="f-edad">¿Qué edad tienes? <b>*</b></label>
+            <p class="help">En principio, la edad no supone ninguna limitación para ser aceptado/a, siempre que seas mayor de 18 años.</p>
+            <input id="f-edad" name="Edad" type="number" inputmode="numeric" min="18" max="99" required data-msg-min="Tienes que ser mayor de 18 años.">
+          </div>
+          <div class="field">
+            <label for="f-ciudad">¿En qué ciudad o zona resides habitualmente? <b>*</b></label>
+            <input id="f-ciudad" name="Ciudad o zona" type="text" required maxlength="120">
+          </div>
+          <div class="field">
+            <label for="f-identidad">¿Cómo defines tu identidad y orientación sexual? <b>*</b></label>
+            <textarea id="f-identidad" name="Identidad y orientación" rows="2" required></textarea>
+          </div>
+          <div class="field">
+            <label for="f-conocido">¿Dónde has conocido a Madame Lux?</label>
+            <input id="f-conocido" name="Dónde me ha conocido" type="text" maxlength="160">
+          </div>
+        </fieldset>
+
+        <!-- II · Experiencia -->
+        <fieldset class="step" data-step="2">
+          <legend class="step__t"><span>II</span>Tu experiencia</legend>
+
+          <div class="field" role="group" aria-labelledby="q-sexo">
+            <p class="q" id="q-sexo">¿Cómo asocias el sexo al BDSM? <b>*</b></p>
+            <div class="scale" data-scale="1-5" data-name="Cómo asocia el sexo al BDSM (1-5)" data-required></div>
+          </div>
+          <div class="field" role="group" aria-labelledby="q-imp">
+            <p class="q" id="q-imp">En una sesión, ¿qué importancia tiene para ti el sexo? <b>*</b></p>
+            <div class="scale scale--11" data-scale="0-10" data-name="Importancia del sexo en una sesión (0-10)" data-required></div>
+          </div>
+          <div class="field" role="radiogroup" aria-labelledby="q-exp">
+            <p class="q" id="q-exp">¿Qué experiencia tienes en el mundo BDSM? <b>*</b></p>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="Experiencia en BDSM" value="Ninguna" required><span>Ninguna</span></label>
+              <label class="opt"><input type="radio" name="Experiencia en BDSM" value="Poca"><span>Poca</span></label>
+              <label class="opt"><input type="radio" name="Experiencia en BDSM" value="Intermedia"><span>Intermedia</span></label>
+              <label class="opt"><input type="radio" name="Experiencia en BDSM" value="Avanzada"><span>Avanzada</span></label>
+              <label class="opt"><input type="radio" name="Experiencia en BDSM" value="Otra" data-other="f-exp-otra"><span>Otra (especificar)</span></label>
+            </div>
+            <input class="other" id="f-exp-otra" name="Experiencia en BDSM (otra)" type="text" maxlength="200" placeholder="Cuéntamela" hidden>
+          </div>
+        </fieldset>
+
+        <!-- III · Prácticas -->
+        <fieldset class="step" data-step="3">
+          <legend class="step__t"><span>III</span>Prácticas</legend>
+          <div class="field">
+            <p class="q">¿Qué grado de interés tienes en las siguientes prácticas?</p>
+            <p class="help">Valora cada práctica del 0 al 5: <b>0</b> = ningún interés, <b>3</b> = interés moderado, <b>5</b> = máximo interés. La valoración expresa interés o curiosidad, no consentimiento para realizar la práctica.</p>
+            <div class="grid" id="grid" data-prefix="Interés · "></div>
+          </div>
+        </fieldset>
+
+        <!-- IV · Deseos y límites -->
+        <fieldset class="step" data-step="4">
+          <legend class="step__t"><span>IV</span>Deseos y límites</legend>
+
+          <div class="field">
+            <label for="f-fantasia">¿Cuál es tu mayor fantasía o qué experiencia te gustaría vivir con Madame Lux?</label>
+            <textarea id="f-fantasia" name="Mayor fantasía" rows="3"></textarea>
+          </div>
+          <div class="field">
+            <label for="f-limites">¿Cuáles son tus límites duros, es decir, aquellas prácticas o situaciones que no aceptarías bajo ningún concepto? <b>*</b></label>
+            <textarea id="f-limites" name="Límites duros" rows="3" required></textarea>
+          </div>
+          <div class="field" role="group" aria-labelledby="q-dolor">
+            <p class="q" id="q-dolor">¿Cuál es tu tolerancia al dolor? <b>*</b></p>
+            <div class="scale" data-scale="1-5" data-name="Tolerancia al dolor (1 ninguna - 5 muy alta)" data-min-label="Ninguna" data-max-label="Muy alta" data-required></div>
+          </div>
+          <div class="field">
+            <label for="f-medica">¿Tienes alguna condición médica que Madame Lux deba conocer por motivos de seguridad?</label>
+            <textarea id="f-medica" name="Condición médica" rows="2"></textarea>
+          </div>
+          <div class="field">
+            <label for="f-medicacion">¿Tomas alguna medicación que pueda ser relevante para tu seguridad durante una sesión?</label>
+            <p class="help">Por privacidad, las preguntas de salud son opcionales. La información relevante para la seguridad deberá hablarse antes de cualquier sesión.</p>
+            <textarea id="f-medicacion" name="Medicación" rows="2"></textarea>
+          </div>
+          <div class="field">
+            <label for="f-lesion">¿Tienes alguna lesión, zona sensible o limitación física que Madame Lux deba tener en cuenta?</label>
+            <textarea id="f-lesion" name="Lesiones o limitaciones físicas" rows="2"></textarea>
+          </div>
+        </fieldset>
+
+        <!-- V · Tu entrega -->
+        <fieldset class="step" data-step="5">
+          <legend class="step__t"><span>V</span>Tu entrega</legend>
+
+          <div class="field">
+            <label for="f-atrae">¿Qué te atrae de someterte a una Dómina como Madame Lux?</label>
+            <textarea id="f-atrae" name="Qué le atrae de someterse" rows="3"></textarea>
+          </div>
+          <div class="field">
+            <label for="f-sensaciones">¿Qué sensaciones buscas experimentar durante una sesión?</label>
+            <textarea id="f-sensaciones" name="Sensaciones que busca" rows="2"></textarea>
+          </div>
+          <div class="field" role="group" aria-labelledby="q-autoridad">
+            <p class="q" id="q-autoridad">¿Qué tipo de autoridad te motiva más?</p>
+            <p class="help">Puedes marcar varias.</p>
+            <div class="opts">
+              <label class="opt"><input type="checkbox" name="Tipo de autoridad" value="Firme"><span>Firme</span></label>
+              <label class="opt"><input type="checkbox" name="Tipo de autoridad" value="Estricta"><span>Estricta</span></label>
+              <label class="opt"><input type="checkbox" name="Tipo de autoridad" value="Calmada"><span>Calmada</span></label>
+              <label class="opt"><input type="checkbox" name="Tipo de autoridad" value="Psicológica"><span>Psicológica</span></label>
+              <label class="opt"><input type="checkbox" name="Tipo de autoridad" value="Humillante"><span>Humillante</span></label>
+              <label class="opt"><input type="checkbox" name="Tipo de autoridad" value="Sensual"><span>Sensual</span></label>
+              <label class="opt"><input type="checkbox" name="Tipo de autoridad" value="Mixta"><span>Mixta</span></label>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-verguenza">¿Qué situaciones te producen vergüenza y, al mismo tiempo, te atraen?</label>
+            <textarea id="f-verguenza" name="Vergüenza que atrae" rows="2"></textarea>
+          </div>
+          <div class="field">
+            <label for="f-emociones">¿Qué emociones te gustaría explorar o experimentar durante una sesión?</label>
+            <textarea id="f-emociones" name="Emociones a explorar" rows="2"></textarea>
+          </div>
+          <div class="field" role="group" aria-labelledby="q-intensidad">
+            <p class="q" id="q-intensidad">¿Qué nivel de intensidad prefieres durante una sesión?</p>
+            <div class="scale" data-scale="1-5" data-name="Intensidad preferida (1 suave - 5 intensa)" data-min-label="Suave" data-max-label="Intensa"></div>
+          </div>
+          <div class="field">
+            <label for="f-intensa">Describe la experiencia BDSM más intensa o significativa que hayas vivido.</label>
+            <textarea id="f-intensa" name="Experiencia más intensa" rows="3"></textarea>
+          </div>
+          <div class="field">
+            <label for="f-sentir">¿Cómo te gustaría sentirte al terminar una sesión con Madame Lux?</label>
+            <textarea id="f-sentir" name="Cómo sentirse al terminar" rows="2"></textarea>
+          </div>
+          <div class="field">
+            <label for="f-confiar">¿Qué necesitas de Madame Lux para sentirte cómodo/a y poder confiar durante la sesión?</label>
+            <textarea id="f-confiar" name="Qué necesita para confiar" rows="2"></textarea>
+          </div>
+          <div class="field">
+            <label for="f-aftercare">¿Hay algún tipo de atención o cuidado que te gustaría recibir después de la sesión (aftercare)?</label>
+            <textarea id="f-aftercare" name="Aftercare" rows="2"></textarea>
+          </div>
+          <div class="field">
+            <label for="f-mas">¿Hay algo más que consideres importante que Madame Lux deba saber sobre ti?</label>
+            <textarea id="f-mas" name="Algo más" rows="2"></textarea>
+          </div>
+          <div class="field field--check">
+            <label class="check">
+              <input type="checkbox" name="Consentimiento" value="Mayor de 18, respuestas sinceras, acepta que Madame Lux las reciba" required>
+              <span>Soy mayor de 18 años, mis respuestas son sinceras y acepto que Madame Lux las reciba para valorar mi solicitud. <b>*</b></span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="adm__nav">
+          <button class="btn btn--ghost adm__prev" type="button" hidden>← Atrás</button>
+          <span class="adm__count" aria-live="polite">Paso 1 de 5</span>
+          <button class="btn btn--red adm__next" type="button">Siguiente →</button>
+          <button class="btn btn--red adm__send" type="submit">Enviar solicitud</button>
+        </div>
+        <p class="adm__msg" id="adm-msg" role="alert"></p>
+      </form>
+
+      <div class="adm__done" id="adm-done" hidden tabindex="-1">
+        <i class="star"></i>
+        <h3>Tu solicitud ya está <em>en mis manos</em>.</h3>
+        <p>La leeré con calma. Si hay compatibilidad, te escribiré por el contacto que me has dejado. Mientras tanto, paciencia: también forma parte del juego.</p>
+        <a class="btn btn--ghost" href="#inicio">Volver al inicio</a>
+      </div>
+    </div>
+
+    <ul class="adm__notes reveal">
+      <li><i class="star"></i> Los campos con * son obligatorios</li>
+      <li><i class="star"></i> Las preguntas de salud son opcionales</li>
+      <li><i class="star"></i> Llega directamente a Madame Lux</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────── CONTACTO ───────────────────────────── -->
+<section class="contacto sec" id="contacto">
+  <div class="wrap contacto__grid">
+    <figure class="contacto__img reveal">
+      <img src="assets/img/corse.webp" width="1000" height="1499" loading="lazy"
+           alt="Madame Lux con corsé de brocado rojo, medias de rejilla y botas, sentada con una fusta sobre las piernas">
+    </figure>
+
+    <div class="contacto__txt">
+      <p class="eyebrow reveal">VII · Contacto</p>
+      <h2 class="h2 reveal" style="--i:1">Cuando hayas obedecido, <em>escríbeme</em>.</h2>
+      <p class="sec__intro reveal" style="--i:2">Primero el formulario. Después, si hay compatibilidad, hablamos. Escríbeme por mensaje: no atiendo llamadas sin que me lo pidas antes.</p>
+
+      <div class="links">
+        <a class="lk lk--wa reveal" href="https://wa.me/34614006638?text=Hola%20Madame%20Lux%2C%20vengo%20de%20tu%20web%20y%20me%20gustar%C3%ADa%20saber%20m%C3%A1s." target="_blank" rel="noopener">
+          <span class="lk__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.02c-.24.68-1.42 1.3-1.96 1.35-.5.05-1.13.07-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.79-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3s.75-2.13 1.02-2.42c.27-.29.58-.36.78-.36h.56c.18 0 .42-.07.65.5.24.58.82 2 .89 2.15.07.14.12.31.02.5-.1.19-.14.31-.29.48-.14.17-.3.38-.43.51-.14.14-.29.3-.13.59.17.29.74 1.22 1.58 1.97 1.09.97 2 1.27 2.29 1.42.29.14.46.12.63-.07.17-.19.72-.84.92-1.13.19-.29.38-.24.65-.14.27.1 1.7.8 1.99.95.29.14.48.22.55.34.07.12.07.7-.17 1.38z"/></svg></span>
+          <span class="lk__t"><span class="lk__k">WhatsApp</span><span class="lk__v">614 00 66 38</span><span class="lk__d">Solo mensajes. Si quieres una llamada, pídemela antes por aquí.</span></span>
+          <span class="lk__go" aria-hidden="true">→</span>
+        </a>
+        <a class="lk reveal" style="--i:1" href="https://t.me/mdmlx" target="_blank" rel="noopener">
+          <span class="lk__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.9 4.3 2.7 11.7c-1.3.5-1.3 1.3-.2 1.6l4.9 1.5 1.9 5.8c.2.6.1.9.8.9.5 0 .7-.2 1-.5l2.4-2.3 5 3.7c.9.5 1.6.2 1.8-.9l3.3-15.4c.3-1.3-.5-1.9-1.7-1.6zM8.5 14.4l10.9-6.9c.5-.3 1 0 .6.4l-9.3 8.4-.4 3.8-1.8-5.7z"/></svg></span>
+          <span class="lk__t"><span class="lk__k">Telegram</span><span class="lk__v">@mdmlx</span><span class="lk__d">Para acordar tu sesión, una vez enviado el formulario</span></span>
+          <span class="lk__go" aria-hidden="true">→</span>
+        </a>
+        <a class="lk reveal" style="--i:2" href="https://fetlife.com/mdmlux" target="_blank" rel="noopener">
+          <span class="lk__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M2.5 8.5c3.2-2.3 6.6-2.3 9.5-.2 2.9-2.1 6.3-2.1 9.5.2 0 5.6-3.1 8.7-6.3 8.7-1.9 0-3.2-1.5-3.2-3 0 1.5-1.3 3-3.2 3-3.2 0-6.3-3.1-6.3-8.7zm3.2 2.7c.8-.9 2.6-1.2 3.9-.3-.6 1.2-2.6 1.6-3.9.3zm12.6 0c-.8-.9-2.6-1.2-3.9-.3.6 1.2 2.6 1.6 3.9.3z"/></svg></span>
+          <span class="lk__t"><span class="lk__k">FetLife</span><span class="lk__v">mdmlux</span><span class="lk__d">Mi rincón dentro de la comunidad</span></span>
+          <span class="lk__go" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+<!-- ────────────────────────────── PIE ─────────────────────────────── -->
+<footer class="ft">
+  <div class="wrap ft__in">
+    <div class="ft__b">
+      <img src="assets/img/logo.webp" alt="" width="84" height="91" loading="lazy">
+      <div>
+        <p class="ft__name">Madame <em>Lux</em></p>
+        <p class="ft__tag">Dómina soft · Zaragoza</p>
+      </div>
+    </div>
+    <nav class="ft__n" aria-label="Pie">
+      <a href="#quien">Quién soy</a><a href="#practicas">Prácticas</a><a href="#huellas">Huellas</a><a href="#tributos">Tributos</a>
+      <a href="#protocolo">Protocolo</a><a href="#admision">Admisión</a><a href="#contacto">Contacto</a>
+    </nav>
+    <div class="ft__l">
+      <span class="ft__18">18+</span>
+      <p>Contenido para adultos. Prácticas BDSM entre personas adultas que consienten. Todas las personas que aparecen en este sitio son mayores de edad. Las imágenes son propiedad de Madame Lux; prohibida su reproducción.</p>
+      <p class="ft__c">© <span id="yr">2026</span> Madame Lux · Todos los derechos reservados</p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- WhatsApp flotante -->
+<a class="wa-fab" href="https://wa.me/34614006638?text=Hola%20Madame%20Lux%2C%20vengo%20de%20tu%20web%20y%20me%20gustar%C3%ADa%20saber%20m%C3%A1s." target="_blank" rel="noopener" aria-label="Escribir a Madame Lux por WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm5.8 14.02c-.24.68-1.42 1.3-1.96 1.35-.5.05-1.13.07-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.79-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3s.75-2.13 1.02-2.42c.27-.29.58-.36.78-.36h.56c.18 0 .42-.07.65.5.24.58.82 2 .89 2.15.07.14.12.31.02.5-.1.19-.14.31-.29.48-.14.17-.3.38-.43.51-.14.14-.29.3-.13.59.17.29.74 1.22 1.58 1.97 1.09.97 2 1.27 2.29 1.42.29.14.46.12.63-.07.17-.19.72-.84.92-1.13.19-.29.38-.24.65-.14.27.1 1.7.8 1.99.95.29.14.48.22.55.34.07.12.07.7-.17 1.38z"/></svg>
+</a>
+
+
+<!-- ─────────────────────────── VISOR ──────────────────────────────── -->
+<dialog class="lb" id="lb" aria-label="Visor de imágenes">
+  <figure class="lb__fig">
+    <img id="lb-img" src="" alt="">
+    <figcaption id="lb-cap"></figcaption>
+  </figure>
+  <button class="lb__x" type="button" aria-label="Cerrar">×</button>
+  <button class="lb__nav lb__prev" type="button" aria-label="Anterior">‹</button>
+  <button class="lb__nav lb__next" type="button" aria-label="Siguiente">›</button>
+  <span class="lb__count" id="lb-count"></span>
+</dialog>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
