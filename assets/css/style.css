@@ -954,6 +954,15 @@ html:not(.pasa) .wa-fab, html.menu-open .wa-fab { display: none; }
 .music.is-on::after { opacity: 0; }
 html:not(.pasa) .music, html.menu-open .music { display: none; }
 .gate__sound { margin-top: 8px; color: var(--gold); opacity: .8; }
+/* Esperando un toque para sonar: el botón late y avisa */
+.music.is-waiting { animation: musicPulse 1.8s ease-in-out infinite; border-color: var(--gold); }
+.music.is-waiting::before {
+  content: "♪ Toca para escuchar la música"; position: absolute; left: calc(100% + 10px); top: 50%; transform: translateY(-50%);
+  white-space: nowrap; padding: 7px 12px; border-radius: 99px; border: 1px solid var(--line-2);
+  background: color-mix(in srgb, var(--bg) 88%, transparent); color: var(--gold-hi);
+  font: 500 12px/1 var(--f-body); pointer-events: none;
+}
+@keyframes musicPulse { 0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--gold) 45%, transparent); } 50% { box-shadow: 0 0 0 8px transparent; } }
 
 /* ── Responsive ────────────────────────────────────────────────────────── */
 @media (max-width: 1180px) {
@@ -1048,6 +1057,7 @@ html:not(.pasa) .music, html.menu-open .music { display: none; }
 @media (max-width: 420px) {
   .gate__btns .btn { width: 100%; }
   .music { left: 12px; bottom: 12px; width: 46px; height: 46px; }
+  .music.is-waiting::before { left: 0; top: auto; bottom: calc(100% + 10px); transform: none; }
   .marquee span { padding-inline: 22px; }
 }
 

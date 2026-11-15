@@ -121,10 +121,14 @@
     const AC = window.AudioContext || window.webkitAudioContext;
     if (!btn || !AC) { if (btn) btn.hidden = true; return { play() {}, wanted: () => false }; }
     const SRC = 'assets/audio/sensual.mp3', LOOP_START = 1, LOOP_LEN = 2194286 / 32000, VOL = 0.30;
-    let ctx = null, gain = null, buf = null, node = null, loading = null, on = false;
+    /* audio mudo en bucle: en iPhone hace que la música suene aunque el móvil esté en silencio */
+    const SILENT = 'data:audio/wav;base64,UklGRvQHAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YdAHAACAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgA==';
+    let ctx = null, gain = null, buf = null, node = null, loading = null, keep = null;
+    let on = false, waiting = false;
     const wanted = () => store.get('ml-musica') !== 'off';
     const ui = () => {
       btn.classList.toggle('is-on', on);
+      btn.classList.toggle('is-waiting', waiting && !on);
       btn.setAttribute('aria-pressed', String(on));
       const label = on ? 'Silenciar música' : 'Activar música';
       btn.setAttribute('aria-label', label); btn.title = label;
@@ -140,23 +144,36 @@
       gain.gain.setValueAtTime(gain.gain.value, t);
       gain.gain.linearRampToValueAtTime(to, t + secs);
     };
-    const play = () => {
+    /* Todo esto tiene que ocurrir DENTRO del gesto (clic o toque) para que el móvil deje sonar */
+    const unlock = () => {
       if (!ctx) { ctx = new AC(); gain = ctx.createGain(); gain.gain.value = 0; gain.connect(ctx.destination); }
-      if (ctx.state !== 'running') ctx.resume().catch(() => {});
-      on = true; ui();
-      load().then(() => {
+      try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch (e) {}
+      if (!keep) { keep = new Audio(SILENT); keep.loop = true; keep.setAttribute('playsinline', ''); keep.volume = 0.01; }
+      keep.play().catch(() => {});
+      try { const s = ctx.createBufferSource(); s.buffer = ctx.createBuffer(1, 1, 22050); s.connect(ctx.destination); s.start(0); } catch (e) {}
+      return ctx.state === 'running' ? Promise.resolve() : ctx.resume();
+    };
+    const play = () => {
+      on = true; waiting = false; ui();
+      unlock().catch(() => {}).then(() => {
         if (!on) return;
-        if (!node) {
-          node = ctx.createBufferSource();
-          node.buffer = buf; node.loop = true;
-          node.loopStart = LOOP_START; node.loopEnd = LOOP_START + LOOP_LEN;
-          node.connect(gain); node.start(0, LOOP_START);
-        }
-        ramp(VOL, 3);                                   // entra despacio
+        if (ctx.state !== 'running') { on = false; waiting = true; arm(); ui(); return; }   // el gesto no valía: esperar al siguiente
+        disarm();
+        return load().then(() => {
+          if (!on) return;
+          if (!node) {
+            node = ctx.createBufferSource();
+            node.buffer = buf; node.loop = true;
+            node.loopStart = LOOP_START; node.loopEnd = LOOP_START + LOOP_LEN;
+            node.connect(gain); node.start(0, LOOP_START);
+          }
+          ramp(VOL, 3);                                 // entra despacio
+        });
       }).catch((e) => { console.warn('Música:', e); on = false; ui(); });
     };
     const pause = () => {
-      on = false; ui();
+      on = false; waiting = false; ui();
+      if (keep) keep.pause();
       if (!ctx) return;
       ramp(0, 0.6);
       setTimeout(() => { if (!on && ctx.state === 'running') ctx.suspend(); }, 700);
@@ -165,20 +182,23 @@
       if (on) { pause(); store.set('ml-musica', 'off'); }
       else { play(); store.set('ml-musica', 'on'); }
     });
-    /* Ya había cruzado el umbral otro día: el navegador solo deja sonar tras un gesto */
-    if (d.classList.contains('pasa') && wanted()) {
-      const evs = ['pointerup', 'mousedown', 'keydown', 'touchend'];
-      const first = (e) => {
-        evs.forEach((t) => window.removeEventListener(t, first, true));
-        if (e.target && e.target.closest && e.target.closest('#music')) return;   // el botón ya se encarga
-        if (!on) play();
-      };
-      evs.forEach((t) => window.addEventListener(t, first, true));
-    }
+    /* Si no ha podido arrancar (o ya había cruzado el umbral otro día), lo intenta en cada
+       toque o tecla hasta que el navegador lo permita. Deslizar no cuenta como toque. */
+    const evs = ['pointerup', 'mousedown', 'keydown', 'touchend', 'click'];
+    const gesture = (e) => {
+      if (on || !wanted()) return;
+      if (e.target && e.target.closest && e.target.closest('#music')) return;   // el botón ya se encarga
+      play();
+    };
+    let armed = false;
+    const arm = () => { if (!armed) { armed = true; evs.forEach((t) => window.addEventListener(t, gesture, true)); } };
+    const disarm = () => { if (armed) { armed = false; evs.forEach((t) => window.removeEventListener(t, gesture, true)); } };
+    if (wanted() && d.classList.contains('pasa')) { waiting = true; arm(); }   // con el umbral delante, solo arranca «Entrar»
     /* Pestaña oculta: se calla; al volver, sigue donde iba */
     document.addEventListener('visibilitychange', () => {
       if (!ctx || !on) return;
-      if (document.hidden) ctx.suspend(); else ctx.resume();
+      if (document.hidden) { ctx.suspend(); if (keep) keep.pause(); }
+      else { ctx.resume(); if (keep) keep.play().catch(() => {}); }
     });
     ui();
     return { play, wanted };
