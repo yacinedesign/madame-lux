@@ -504,6 +504,24 @@ html.pasa .gate { display: none; }
   font: italic 400 21px/1.4 var(--f-disp); color: var(--ink-2);
 }
 
+/* ── A mis pies: las dos fotos grandes y a todo color ─────────────────── */
+.pies { background: radial-gradient(ellipse 65% 55% at 50% 60%, color-mix(in srgb, var(--red) 12%, transparent), transparent 72%); }
+.pies__grid { display: grid; grid-template-columns: 1.55fr 1fr; gap: 16px; height: clamp(440px, 48vw, 660px); }
+.pies__fig { position: relative; margin: 0; overflow: hidden; border-radius: 3px; border: 1px solid var(--line-2); background: var(--bg-2); }
+.pies__fig img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.8s var(--ease); }
+.pies__fig--a img { object-position: 55% 70%; }
+.pies__fig--b img { object-position: 50% 35%; }
+.pies__fig::before { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(to top, color-mix(in srgb, var(--bg) 70%, transparent), transparent 32%); }
+.pies__fig::after { content: ""; position: absolute; inset: 12px; z-index: 1; pointer-events: none; border: 1px solid color-mix(in srgb, var(--gold) 45%, transparent); }
+.pies__fig:hover img { transform: scale(1.04); }
+.pies__fig figcaption {
+  position: absolute; left: 28px; bottom: 24px; z-index: 2;
+  display: flex; align-items: center; gap: 10px;
+  font: italic 400 22px/1.2 var(--f-disp); color: var(--gold-hi); text-shadow: 0 2px 14px rgba(0,0,0,.8);
+}
+.pies__foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 18px 26px; margin-top: 32px; }
+.pies__foot .chips { margin: 0; justify-content: center; }
+
 /* ── Interludio ────────────────────────────────────────────────────────── */
 .inter {
   position: relative; overflow: hidden; isolation: isolate; text-align: center;
@@ -526,7 +544,7 @@ html.pasa .gate { display: none; }
 .inter__sig { margin-top: 26px; font: 500 12px/1 var(--f-caps); letter-spacing: .4em; text-transform: uppercase; color: var(--gold); }
 
 /* ── Huellas (galería) ─────────────────────────────────────────────────── */
-.gal { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; aspect-ratio: 1240 / 1060; }
+.gal { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; aspect-ratio: 1240 / 1620; }
 .gal__col { display: flex; flex-direction: column; gap: 14px; min-height: 0; }
 .shot {
   position: relative; overflow: hidden; display: block; width: 100%;
@@ -966,6 +984,10 @@ html:not(.pasa) .wa-fab, html.menu-open .wa-fab { display: none; }
   .adm__nav .btn { flex: 1 1 auto; }
 
   .rules__img { margin: -30px -22px 24px; }
+  .pies__grid { grid-template-columns: 1fr; height: auto; gap: 12px; }
+  .pies__fig--a { aspect-ratio: 1205 / 996; }
+  .pies__fig--b { aspect-ratio: 4 / 5; }
+  .pies__fig figcaption { left: 22px; bottom: 18px; font-size: 19px; }
   .carta { padding: 30px 18px 26px; }
   .carta::before { display: none; }
   .carta li { gap: 10px; padding: 15px 0; }
