@@ -544,7 +544,7 @@ html.pasa .gate { display: none; }
 .inter__sig { margin-top: 26px; font: 500 12px/1 var(--f-caps); letter-spacing: .4em; text-transform: uppercase; color: var(--gold); }
 
 /* ── Huellas (galería) ─────────────────────────────────────────────────── */
-.gal { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; aspect-ratio: 1240 / 1620; }
+.gal { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; aspect-ratio: 1240 / 1810; }
 .gal__col { display: flex; flex-direction: column; gap: 14px; min-height: 0; }
 .shot {
   position: relative; overflow: hidden; display: block; width: 100%;
