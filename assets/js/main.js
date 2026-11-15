@@ -110,6 +110,80 @@
   })();
 
 
+  /* ── Música de fondo ──────────────────────────────────────────────────────
+     Pista original (assets/audio/ambiente.mp3): 1 s de margen + 90 s de bucle + 1 s.
+     Va por Web Audio para que el bucle no tenga cortes. Empieza al pulsar «Entrar»
+     en el umbral (o al primer toque si ya se había entrado antes) y se silencia con
+     el botón de abajo a la izquierda; la elección se recuerda. */
+  const music = (() => {
+    const btn = $('#music');
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!btn || !AC) { if (btn) btn.hidden = true; return { play() {}, wanted: () => false }; }
+    const SRC = 'assets/audio/ambiente.mp3', LOOP_START = 1, LOOP_LEN = 90, VOL = 0.32;
+    let ctx = null, gain = null, buf = null, node = null, loading = null, on = false;
+    const wanted = () => store.get('ml-musica') !== 'off';
+    const ui = () => {
+      btn.classList.toggle('is-on', on);
+      btn.setAttribute('aria-pressed', String(on));
+      const label = on ? 'Silenciar música' : 'Activar música';
+      btn.setAttribute('aria-label', label); btn.title = label;
+    };
+    const load = () => loading || (loading = fetch(SRC)
+      .then((r) => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.arrayBuffer(); })
+      .then((a) => new Promise((res, rej) => ctx.decodeAudioData(a, res, rej)))
+      .then((b) => { buf = b; return b; })
+      .catch((e) => { loading = null; throw e; }));
+    const ramp = (to, secs) => {
+      const t = ctx.currentTime;
+      gain.gain.cancelScheduledValues(t);
+      gain.gain.setValueAtTime(gain.gain.value, t);
+      gain.gain.linearRampToValueAtTime(to, t + secs);
+    };
+    const play = () => {
+      if (!ctx) { ctx = new AC(); gain = ctx.createGain(); gain.gain.value = 0; gain.connect(ctx.destination); }
+      if (ctx.state !== 'running') ctx.resume().catch(() => {});
+      on = true; ui();
+      load().then(() => {
+        if (!on) return;
+        if (!node) {
+          node = ctx.createBufferSource();
+          node.buffer = buf; node.loop = true;
+          node.loopStart = LOOP_START; node.loopEnd = LOOP_START + LOOP_LEN;
+          node.connect(gain); node.start(0, LOOP_START);
+        }
+        ramp(VOL, 3);                                   // entra despacio
+      }).catch((e) => { console.warn('Música:', e); on = false; ui(); });
+    };
+    const pause = () => {
+      on = false; ui();
+      if (!ctx) return;
+      ramp(0, 0.6);
+      setTimeout(() => { if (!on && ctx.state === 'running') ctx.suspend(); }, 700);
+    };
+    btn.addEventListener('click', () => {
+      if (on) { pause(); store.set('ml-musica', 'off'); }
+      else { play(); store.set('ml-musica', 'on'); }
+    });
+    /* Ya había cruzado el umbral otro día: el navegador solo deja sonar tras un gesto */
+    if (d.classList.contains('pasa') && wanted()) {
+      const evs = ['pointerup', 'mousedown', 'keydown', 'touchend'];
+      const first = (e) => {
+        evs.forEach((t) => window.removeEventListener(t, first, true));
+        if (e.target && e.target.closest && e.target.closest('#music')) return;   // el botón ya se encarga
+        if (!on) play();
+      };
+      evs.forEach((t) => window.addEventListener(t, first, true));
+    }
+    /* Pestaña oculta: se calla; al volver, sigue donde iba */
+    document.addEventListener('visibilitychange', () => {
+      if (!ctx || !on) return;
+      if (document.hidden) ctx.suspend(); else ctx.resume();
+    });
+    ui();
+    return { play, wanted };
+  })();
+
+
   /* ── Umbral 18+ ───────────────────────────────────────────────────────── */
   const enter = () => { d.classList.add('entered'); embers.start(); };
   const gate = $('#gate');
@@ -122,6 +196,7 @@
     setTimeout(() => ok && ok.focus({ preventScroll: true }), 350);
     ok.addEventListener('click', () => {
       store.set('ml-umbral', '1');
+      if (music.wanted()) music.play();               // el clic de «Entrar» permite que suene
       window.scrollTo(0, 0);
       gate.classList.add('open');
       d.classList.remove('locked');
