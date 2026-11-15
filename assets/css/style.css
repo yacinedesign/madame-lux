@@ -538,7 +538,19 @@ html.pasa .gate { display: none; }
   content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background: linear-gradient(var(--bg), transparent 18%, transparent 82%, var(--bg));
 }
-.medal--inter { width: clamp(150px, 20vw, 250px); margin: 0 auto 44px; }
+.medal--inter { width: clamp(120px, 13vw, 190px); margin: 0 auto 36px; }
+/* Ilustración estilo cómic, enmarcada como un póster junto a la cita */
+.inter__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(40px, 6vw, 96px); align-items: center; }
+.inter__poster {
+  position: relative; justify-self: center; width: min(100%, 440px); margin: 0; padding: 12px;
+  border: 1px solid var(--line-2); border-radius: 3px; background: var(--bg-2);
+  box-shadow: 0 40px 80px -30px rgba(0,0,0,.95), 0 0 70px -20px color-mix(in srgb, var(--red) 55%, transparent);
+  transform: rotate(-2deg); transition: transform .8s var(--ease);
+}
+.inter__poster:hover { transform: rotate(0) scale(1.02); }
+.inter__poster img { width: 100%; height: auto; aspect-ratio: 688 / 1024; object-fit: cover; border-radius: 2px; }
+.inter__poster figcaption { margin-top: 12px; font: 500 10.5px/1.2 var(--f-caps); letter-spacing: .3em; text-transform: uppercase; color: var(--gold); }
+.inter__txt .inter__q { font-size: clamp(34px, 4.4vw, 64px); }
 .inter__q { margin: 0 auto; max-width: 20ch; font: 300 clamp(36px, 5.2vw, 72px)/1.08 var(--f-disp); text-wrap: balance; }
 .inter__q em { font-weight: 400; }
 .inter__sig { margin-top: 26px; font: 500 12px/1 var(--f-caps); letter-spacing: .4em; text-transform: uppercase; color: var(--gold); }
@@ -933,6 +945,8 @@ html:not(.pasa) .wa-fab, html.menu-open .wa-fab { display: none; }
   .ofrenda { position: relative; top: 0; }
   .ft__in { grid-template-columns: 1fr; }
   .contacto__grid { grid-template-columns: 1fr; }
+  .inter__grid { grid-template-columns: 1fr; gap: 56px; }
+  .inter__poster { width: min(100%, 360px); }
   .contacto__img { max-width: 460px; width: 100%; margin-inline: auto; aspect-ratio: 4 / 4.4; }
 }
 @media (max-width: 760px) {
