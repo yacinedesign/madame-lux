@@ -111,7 +111,8 @@
 
 
   /* ── Música de fondo ──────────────────────────────────────────────────────
-     Pista original (assets/audio/ambiente.mp3): 1 s de margen + 90 s de bucle + 1 s.
+     Pista original (assets/audio/sensual.mp3, beat R&B a 84 BPM): 1 s de margen + 68,57 s
+     de bucle + 1 s.
      Va por Web Audio para que el bucle no tenga cortes. Empieza al pulsar «Entrar»
      en el umbral (o al primer toque si ya se había entrado antes) y se silencia con
      el botón de abajo a la izquierda; la elección se recuerda. */
@@ -119,7 +120,7 @@
     const btn = $('#music');
     const AC = window.AudioContext || window.webkitAudioContext;
     if (!btn || !AC) { if (btn) btn.hidden = true; return { play() {}, wanted: () => false }; }
-    const SRC = 'assets/audio/ambiente.mp3', LOOP_START = 1, LOOP_LEN = 90, VOL = 0.32;
+    const SRC = 'assets/audio/sensual.mp3', LOOP_START = 1, LOOP_LEN = 2194286 / 32000, VOL = 0.30;
     let ctx = null, gain = null, buf = null, node = null, loading = null, on = false;
     const wanted = () => store.get('ml-musica') !== 'off';
     const ui = () => {
